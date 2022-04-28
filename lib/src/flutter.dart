@@ -71,7 +71,7 @@ FlutterOp<Process> drive(
     _ask().p(RTE.chainTryCatchK(
       (tc) => tc
           .flutterWithDevice(
-            device.toolchain.fvmPath.isEmpty? [ 'drive' ] :[ 'fvm', 'drive' ],
+            device.toolchain.fvmPath.isEmpty? [ 'drive' ] :[ 'fvm', 'flutter', 'drive' ],
             device.state,
             args: [
               '--target=$target',
@@ -81,7 +81,7 @@ FlutterOp<Process> drive(
           )
           .process(),
       (err, stackTrace) => FlutterError.toolchainFailure(
-        op: device.toolchain.fvmPath.isEmpty? 'drive' :'fvm drive',
+        op: device.toolchain.fvmPath.isEmpty? 'drive' :'fvm flutter drive',
         message: '$err',
       ),
     ));
@@ -98,14 +98,14 @@ FlutterOp<Process> test(
     _ask().p(RTE.chainTryCatchK(
       (tc) => tc
           .flutterWithDevice(
-            [ 'test' ],
+            device.toolchain.fvmPath.isEmpty? [ 'test' ] :[ 'fvm', 'flutter', 'test' ],
             device.state,
             args: [target, ...args],
             config: config,
           )
           .process(),
       (err, stackTrace) => FlutterError.toolchainFailure(
-        op: 'test',
+        op: device.toolchain.fvmPath.isEmpty? 'test' :'fvm flutter test',
         message: '$err',
       ),
     ));
