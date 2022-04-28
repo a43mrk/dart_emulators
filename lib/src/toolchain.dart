@@ -40,7 +40,7 @@ final _emulatorPath = _which('emulator')
 
 final _flutterPath = _which('flutter').p(TO.getOrElse(() => ''));
 final _fvmPath = _which('fvm').p(TO.getOrElse(() => ''));
-final _xcrunPath = _which('xcrun').p(TO.getOrElse(() => ''));
+final _xcrunPath = _which('xcrun').p(TO.getOrElse(() => 'xcrun'));
 
 /// [Toolchain] represents the CLI tools we will use.
 @freezed

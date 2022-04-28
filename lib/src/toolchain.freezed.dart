@@ -12,7 +12,32 @@ part of 'toolchain.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+class _$ToolchainTearOff {
+  const _$ToolchainTearOff();
+
+  _Toolchain call(
+      {required String adbPath,
+      required String avdmanagerPath,
+      required String emulatorPath,
+      required String flutterPath,
+      required String fvmPath,
+      required String xcrunPath}) {
+    return _Toolchain(
+      adbPath: adbPath,
+      avdmanagerPath: avdmanagerPath,
+      emulatorPath: emulatorPath,
+      flutterPath: flutterPath,
+      fvmPath: fvmPath,
+      xcrunPath: xcrunPath,
+    );
+  }
+}
+
+/// @nodoc
+const $Toolchain = _$ToolchainTearOff();
 
 /// @nodoc
 mixin _$Toolchain {
@@ -214,11 +239,12 @@ class _$_Toolchain extends _Toolchain {
 
 abstract class _Toolchain extends Toolchain {
   const factory _Toolchain(
-      {required final String adbPath,
-      required final String avdmanagerPath,
-      required final String emulatorPath,
-      required final String flutterPath,
-      required final String xcrunPath}) = _$_Toolchain;
+      {required String adbPath,
+      required String avdmanagerPath,
+      required String emulatorPath,
+      required String flutterPath,
+      required String fvmPath,
+      required String xcrunPath}) = _$_Toolchain;
   const _Toolchain._() : super._();
 
   @override
@@ -230,7 +256,9 @@ abstract class _Toolchain extends Toolchain {
   @override
   String get flutterPath => throw _privateConstructorUsedError;
   @override
-  String get xcrunPath => throw _privateConstructorUsedError;
+  String get fvmPath;
+  @override
+  String get xcrunPath;
   @override
   @JsonKey(ignore: true)
   _$$_ToolchainCopyWith<_$_Toolchain> get copyWith =>
