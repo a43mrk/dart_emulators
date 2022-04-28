@@ -99,6 +99,7 @@ class Toolchain with _$Toolchain {
 
     return run(flutterPath.isEmpty? fvmPath + " flutter" :flutterPath, [
       command,
+      '--no-sound-null-safety',
       '-d',
       device.id,
       '--dart-define',
