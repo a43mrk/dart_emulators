@@ -89,7 +89,7 @@ class Toolchain with _$Toolchain {
   /// `EMULATORS_DEVICE` environment variable so you can easily take screenshots
   /// etc.
   ProcessRunner flutterWithDevice(
-    String command,
+    List<String> command,
     DeviceState device, {
     List<String> args = const [],
     Map<String, dynamic> config = const {},
@@ -98,7 +98,7 @@ class Toolchain with _$Toolchain {
     final deviceJson = json.encode(device.toJson());
 
     return run(flutterPath, [
-      command,
+      ...command,
       '-d',
       device.id,
       '--dart-define',
