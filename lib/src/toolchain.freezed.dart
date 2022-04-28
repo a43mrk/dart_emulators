@@ -23,12 +23,14 @@ class _$ToolchainTearOff {
       required String avdmanagerPath,
       required String emulatorPath,
       required String flutterPath,
+      required String fvmPath,
       required String xcrunPath}) {
     return _Toolchain(
       adbPath: adbPath,
       avdmanagerPath: avdmanagerPath,
       emulatorPath: emulatorPath,
       flutterPath: flutterPath,
+      fvmPath: fvmPath,
       xcrunPath: xcrunPath,
     );
   }
@@ -43,6 +45,7 @@ mixin _$Toolchain {
   String get avdmanagerPath => throw _privateConstructorUsedError;
   String get emulatorPath => throw _privateConstructorUsedError;
   String get flutterPath => throw _privateConstructorUsedError;
+  String get fvmPath => throw _privateConstructorUsedError;
   String get xcrunPath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -59,6 +62,7 @@ abstract class $ToolchainCopyWith<$Res> {
       String avdmanagerPath,
       String emulatorPath,
       String flutterPath,
+      String fvmPath,
       String xcrunPath});
 }
 
@@ -76,6 +80,7 @@ class _$ToolchainCopyWithImpl<$Res> implements $ToolchainCopyWith<$Res> {
     Object? avdmanagerPath = freezed,
     Object? emulatorPath = freezed,
     Object? flutterPath = freezed,
+    Object? fvmPath = freezed,
     Object? xcrunPath = freezed,
   }) {
     return _then(_value.copyWith(
@@ -94,6 +99,10 @@ class _$ToolchainCopyWithImpl<$Res> implements $ToolchainCopyWith<$Res> {
       flutterPath: flutterPath == freezed
           ? _value.flutterPath
           : flutterPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      fvmPath: fvmPath == freezed
+          ? _value.fvmPath
+          : fvmPath // ignore: cast_nullable_to_non_nullable
               as String,
       xcrunPath: xcrunPath == freezed
           ? _value.xcrunPath
@@ -114,6 +123,7 @@ abstract class _$ToolchainCopyWith<$Res> implements $ToolchainCopyWith<$Res> {
       String avdmanagerPath,
       String emulatorPath,
       String flutterPath,
+      String fvmPath,
       String xcrunPath});
 }
 
@@ -132,6 +142,7 @@ class __$ToolchainCopyWithImpl<$Res> extends _$ToolchainCopyWithImpl<$Res>
     Object? avdmanagerPath = freezed,
     Object? emulatorPath = freezed,
     Object? flutterPath = freezed,
+    Object? fvmPath = freezed,
     Object? xcrunPath = freezed,
   }) {
     return _then(_Toolchain(
@@ -151,6 +162,10 @@ class __$ToolchainCopyWithImpl<$Res> extends _$ToolchainCopyWithImpl<$Res>
           ? _value.flutterPath
           : flutterPath // ignore: cast_nullable_to_non_nullable
               as String,
+      fvmPath: fvmPath == freezed
+          ? _value.fvmPath
+          : fvmPath // ignore: cast_nullable_to_non_nullable
+              as String,
       xcrunPath: xcrunPath == freezed
           ? _value.xcrunPath
           : xcrunPath // ignore: cast_nullable_to_non_nullable
@@ -167,6 +182,7 @@ class _$_Toolchain extends _Toolchain {
       required this.avdmanagerPath,
       required this.emulatorPath,
       required this.flutterPath,
+      required this.fvmPath,
       required this.xcrunPath})
       : super._();
 
@@ -179,11 +195,13 @@ class _$_Toolchain extends _Toolchain {
   @override
   final String flutterPath;
   @override
+  final String fvmPath;
+  @override
   final String xcrunPath;
 
   @override
   String toString() {
-    return 'Toolchain(adbPath: $adbPath, avdmanagerPath: $avdmanagerPath, emulatorPath: $emulatorPath, flutterPath: $flutterPath, xcrunPath: $xcrunPath)';
+    return 'Toolchain(adbPath: $adbPath, avdmanagerPath: $avdmanagerPath, emulatorPath: $emulatorPath, flutterPath: $flutterPath, fvmPath: $fvmPath, xcrunPath: $xcrunPath)';
   }
 
   @override
@@ -198,6 +216,7 @@ class _$_Toolchain extends _Toolchain {
                 .equals(other.emulatorPath, emulatorPath) &&
             const DeepCollectionEquality()
                 .equals(other.flutterPath, flutterPath) &&
+            const DeepCollectionEquality().equals(other.fvmPath, fvmPath) &&
             const DeepCollectionEquality().equals(other.xcrunPath, xcrunPath));
   }
 
@@ -208,6 +227,7 @@ class _$_Toolchain extends _Toolchain {
       const DeepCollectionEquality().hash(avdmanagerPath),
       const DeepCollectionEquality().hash(emulatorPath),
       const DeepCollectionEquality().hash(flutterPath),
+      const DeepCollectionEquality().hash(fvmPath),
       const DeepCollectionEquality().hash(xcrunPath));
 
   @JsonKey(ignore: true)
@@ -222,6 +242,7 @@ abstract class _Toolchain extends Toolchain {
       required String avdmanagerPath,
       required String emulatorPath,
       required String flutterPath,
+      required String fvmPath,
       required String xcrunPath}) = _$_Toolchain;
   const _Toolchain._() : super._();
 
@@ -233,6 +254,8 @@ abstract class _Toolchain extends Toolchain {
   String get emulatorPath;
   @override
   String get flutterPath;
+  @override
+  String get fvmPath;
   @override
   String get xcrunPath;
   @override

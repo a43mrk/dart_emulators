@@ -38,7 +38,8 @@ final _emulatorPath = _which('emulator')
         .p(TO.fromOption)))
     .p(TO.getOrElse(() => 'emulator'));
 
-final _flutterPath = _which('flutter').p(TO.getOrElse(() => 'flutter'));
+final _flutterPath = _which('flutter').p(TO.getOrElse(() => ''));
+final _fvmPath = _which('fvm').p(TO.getOrElse(() => ''));
 final _xcrunPath = _which('xcrun').p(TO.getOrElse(() => 'xcrun'));
 
 /// [Toolchain] represents the CLI tools we will use.
@@ -51,6 +52,7 @@ class Toolchain with _$Toolchain {
     required String avdmanagerPath,
     required String emulatorPath,
     required String flutterPath,
+    required String fvmPath,
     required String xcrunPath,
   }) = _Toolchain;
 
@@ -59,6 +61,7 @@ class Toolchain with _$Toolchain {
         _avdmanagerPath,
         _emulatorPath,
         _flutterPath,
+        _fvmPath,
         _xcrunPath,
       ]).p(T.map(
         (paths) => Toolchain(
@@ -66,7 +69,8 @@ class Toolchain with _$Toolchain {
           avdmanagerPath: paths[1],
           emulatorPath: paths[2],
           flutterPath: paths[3],
-          xcrunPath: paths[4],
+          fvmPath: paths[4],
+          xcrunPath: paths[5],
         ),
       ))();
 
@@ -75,7 +79,11 @@ class Toolchain with _$Toolchain {
     List<String> args, {
     Map<String, String>? env,
   }) =>
-      run(flutterPath, args, env: env);
+      run(
+        flutterPath.isEmpty? fvmPath: flutterPath,
+        flutterPath.isEmpty? [ 'flutter', ...args ] :args,
+        env: env
+        );
 
   /// Wrapper for the `flutter` CLI tools. Runs a command and sets the
   /// `EMULATORS_DEVICE` environment variable so you can easily take screenshots
