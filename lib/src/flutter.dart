@@ -71,7 +71,7 @@ FlutterOp<Process> drive(
     _ask().p(RTE.chainTryCatchK(
       (tc) => tc
           .flutterWithDevice(
-            'drive',
+            device.toolchain.fvmPath.isEmpty? 'drive' :'fvm drive',
             device.state,
             args: [
               '--target=$target',
@@ -81,7 +81,7 @@ FlutterOp<Process> drive(
           )
           .process(),
       (err, stackTrace) => FlutterError.toolchainFailure(
-        op: 'drive',
+        op: device.toolchain.fvmPath.isEmpty? 'drive' :'fvm drive',
         message: '$err',
       ),
     ));
