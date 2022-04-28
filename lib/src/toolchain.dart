@@ -40,7 +40,7 @@ final _emulatorPath = _which('emulator')
 
 final _flutterPath = _which('flutter').p(TO.getOrElse(() => ''));
 final _fvmPath = _which('fvm').p(TO.getOrElse(() => ''));
-final _xcrunPath = _which('xcrun').p(TO.getOrElse(() => 'xcrun'));
+final _xcrunPath = _which('xcrun').p(TO.getOrElse(() => ''));
 
 /// [Toolchain] represents the CLI tools we will use.
 @freezed
@@ -97,7 +97,7 @@ class Toolchain with _$Toolchain {
     final configJson = json.encode(config);
     final deviceJson = json.encode(device.toJson());
 
-    return run(flutterPath, [
+    return run(flutterPath.isEmpty? fvmPath + " flutter" :flutterPath, [
       ...command,
       '-d',
       device.id,

@@ -13,8 +13,8 @@ class ProcessRunner {
   final Map<String, String>? env;
 
   Future<String> string() => Process.run(
-        exec,
-        args,
+        exec.split(" ").first,
+        [ ...exec.split(" ").sublist(1), ...args ],
         stdoutEncoding: const Utf8Codec(),
         environment: env,
       ).then((r) => r.stdout.trim());
@@ -22,15 +22,15 @@ class ProcessRunner {
   Future<dynamic> json() => string().then(jsonDecode);
 
   Future<List<int>> binary() => Process.run(
-        exec,
-        args,
+        exec.split(" ").first,
+        [ ...exec.split(" ").sublist(1), ...args ],
         environment: env,
         stdoutEncoding: null,
       ).then((r) => r.stdout as List<int>);
 
   Future<Process> process() => Process.start(
-        exec,
-        args,
+        exec.split(" ").first,
+        [ ...exec.split(" ").sublist(1), ...args ],
         environment: env,
       );
 }
